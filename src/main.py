@@ -10,14 +10,7 @@ def main():
         description="Mouse sperm head detection from binary TIF images"
     )
 
-    # GUI mode
-    parser.add_argument(
-        "--gui",
-        action="store_true",
-        help="Launch GUI mode for interactive parameter tuning",
-    )
-
-    # Input options (for CLI mode)
+    # Input options
     parser.add_argument(
         "input_file", nargs="?", help="Input TIF file path (required for CLI mode)"
     )
@@ -131,29 +124,14 @@ def main():
 
     args = parser.parse_args()
 
-    # Launch GUI mode if requested
-    if args.gui:
-        try:
-            from gui import main as gui_main
-
-            gui_main()
-        except ImportError as e:
-            print(f"Error: PyQt6 not available. Install with: pip install PyQt6")
-            print(f"Details: {e}")
-            return 1
-        return 0
-
     # CLI mode - check required arguments
-    if not args.gui and not args.output_dir:
+    if not args.output_dir:
         parser.print_help()
-        print("\nError: --gui mode OR --output_dir is required")
+        print("\nError: --output_dir is required")
         return 1
 
-    # Determine processing mode: single file, batch, or GUI
-    if args.gui:
-        # GUI mode handled above
-        pass
-    elif args.input_dir:
+    # Determine processing mode: single file or batch
+    if args.input_dir:
         # Batch processing mode
         return process_batch(args, parser)
     elif args.input_file:
@@ -161,7 +139,7 @@ def main():
         return process_single_file(args, parser)
     else:
         parser.print_help()
-        print("\nError: Either --gui, --input_dir, or input_file must be specified")
+        print("\nError: Either --input_dir or input_file must be specified")
         return 1
 
 
