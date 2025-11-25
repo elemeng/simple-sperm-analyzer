@@ -15,14 +15,18 @@ A Python-based tool for mouse sperm head detection, tracking, and motility analy
 
 ### Using uv (recommended)
 
+First, clone the repository:
+
 ```bash
-uv sync
+git clone https://github.com/elemeng/simple-sperm-analyzer.git
+cd simple-sperm-analyzer
 ```
 
-### Using pip
+Then, install dependecies:
 
 ```bash
-pip install -e .
+pip install uv #(if not already installed)
+uv sync
 ```
 
 ## Usage
@@ -30,36 +34,36 @@ pip install -e .
 ### Single File Processing
 
 ```bash
-python src/main.py input.tif --output_dir results/ --min-area 20 --max-area 45
+uv run src/main.py input.tif --output_dir results/ --min-area 20 --max-area 45
 ```
 
 ### Batch Processing
 
 ```bash
-python src/main.py --input_dir data/ --output_dir results/ --pattern "*.tif" --parallel 4
+uv run src/main.py --input_dir data/ --output_dir results/ --pattern "*.tif" --parallel 4
 ```
 
 ### With Overlay Movie for Visualization
 
 ```bash
-python src/main.py input.tif --output_dir results/ --overlay-movie original_movie.tif
+uv run src/main.py input.tif --output_dir results/ --overlay-movie original_movie.tif
 ```
 
 ### Analysis and Visualization
 
 ```bash
 # Run motility analysis
-python src/analysis.py tracking.csv --pixel-size 0.5 --fps 60
+uv run src/analysis.py tracking.csv --pixel-size 0.5 --fps 60
 
 # Create plots
-python src/plot.py
-python src/plot_bonferroni.py
+uv run src/plot.py
+uv run src/plot_bonferroni.py
 
 # Convert movies to TIF
-python src/movie2tif.py input.mp4 output.tif
+uv run src/movie2tif.py input.mp4 output.tif
 
 # Preprocess images
-python src/preprocess.py input.tif output.tif
+uv run src/preprocess.py input.tif output.tif   
 ```
 
 ## Key Parameters
