@@ -1,0 +1,27 @@
+
+╔══════════════════════════════════════════════════════════════╗
+║           SPERM MOTILITY ANALYSIS REPORT                     ║
+║           Based on Standard Motility Parameters              ║
+╚══════════════════════════════════════════════════════════════╝
+
+📊 ANALYSIS PARAMETERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Pixel size:          0.17 μm/pixel
+  Frame rate:          33 fps
+  VAP window (w):      5 frames
+  Motility threshold (VCL): VCL ≥ 20.0 μm/s
+  Motility threshold (VSL & VAP): VSL ≥ 4.0 μm/s & VAP ≥ 4.0 μm/s
+
+📈 MOTILITY CLASSIFICATION (Standard Methods)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  Total tracks:             635
+  
+ Motile sperm (VCL≥20.0):  95.43% ████████████████████████████░░ (606 tracks)
+ Motile sperm (VSL≥4.0 & VAP≥4.0):  95.91% ████████████████████████████░░ (609 tracks)
+
+⚡ VELOCITY PARAMETERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  VSL (Straight-line):     70.03 μm/s
+  VCL (Curvilinear):       85.30 μm/s
+  VAP (Average path):      79.14 μm/s
+

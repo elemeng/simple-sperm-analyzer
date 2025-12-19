@@ -1,0 +1,80 @@
+<svg width="900" height="420" viewBox="0 0 900 420"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <style>
+    .title { font: bold 22px sans-serif; fill: #222; }
+    .label { font: 16px sans-serif; fill: #222; }
+    .small { font: 14px sans-serif; fill: #444; }
+    .formula { font: bold 18px monospace; fill: #000; }
+  </style>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" class="title">
+    OpenCV Solidity: Area / Convex Hull Area
+  </text>
+
+  <!-- LEFT: Object -->
+  <g transform="translate(80,90)">
+    <text x="120" y="-20" text-anchor="middle" class="label">
+      Detected Object
+    </text>
+
+    <!-- Object shape -->
+    <path d="
+      M 60 40
+      C 30 20, 20 80, 50 110
+      C 70 140, 130 140, 160 110
+      C 190 80, 180 30, 140 20
+      C 110 10, 80 20, 60 40 Z"
+      fill="#6fa8dc" stroke="#1c4587" stroke-width="2"/>
+
+    <text x="120" y="170" text-anchor="middle" class="small">
+      Area(object)
+    </text>
+  </g>
+
+  <!-- RIGHT: Convex Hull -->
+  <g transform="translate(460,90)">
+    <text x="120" y="-20" text-anchor="middle" class="label">
+      Convex Hull
+    </text>
+
+    <!-- Hull -->
+    <polygon points="
+      60,30
+      30,80
+      60,140
+      140,140
+      190,80
+      160,30"
+      fill="#f9cb9c" stroke="#b45f06" stroke-width="2"/>
+
+    <!-- Original object (faded) -->
+    <path d="
+      M 60 40
+      C 30 20, 20 80, 50 110
+      C 70 140, 130 140, 160 110
+      C 190 80, 180 30, 140 20
+      C 110 10, 80 20, 60 40 Z"
+      fill="none" stroke="#6fa8dc" stroke-width="2" stroke-dasharray="5,4"/>
+
+    <text x="120" y="170" text-anchor="middle" class="small">
+      Area(convex hull)
+    </text>
+  </g>
+
+  <!-- Formula -->
+  <g transform="translate(220,300)">
+    <text x="230" y="0" text-anchor="middle" class="formula">
+      solidity = area(object) / area(convex hull)
+    </text>
+
+    <text x="230" y="35" text-anchor="middle" class="small">
+      Range: 0 → 1
+    </text>
+
+    <text x="230" y="65" text-anchor="middle" class="small">
+      Higher = more compact, solid shape
+    </text>
+  </g>
+</svg>

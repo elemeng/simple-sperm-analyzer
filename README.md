@@ -1,110 +1,292 @@
-# Simple Sperm Analyzer
+# 🚀 Sperm Motility Analyzer
 
-A Python-based tool for mouse sperm head detection, tracking, and motility analysis from TIF image stacks. The project uses computer vision techniques with OpenCV and provides a command-line interface for automated sperm analysis following OpenCASA standards.
+**Automated detection, tracking, and quantitative analysis of sperm motility using motion-aware algorithms**
 
-## Features
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-orange.svg)](https://opencv.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-- **Automated Sperm Detection**: Contour-based detection with shape analysis for sperm head identification
-- **Multi-Object Tracking**: Kalman filter-based tracking for sperm trajectory analysis
-- **Motility Analysis**: Statistical analysis of motility parameters (VSL, VCL, LIN) following OpenCASA standards
-- **Batch Processing**: Parallel processing of multiple TIF files
-- **Visualization**: Overlay movies and marked images for result verification
-- **Flexible Parameters**: Customizable detection parameters for different experimental conditions
+---
 
-## Installation
+## 📘 Full parameter reference
 
-### Using uv (recommended)
+### Click here to see ➡️ [Detailed parameter description](docs/Parameters.md) 📖
 
-First, clone the repository:
+---
+
+## 🏃‍♂️ Quick Start
+
+### Installation
+
+This pipeline is **recommended for Linux (including WSL)**, and is also supported on **Windows and macOS**, provided **Python ≥ 3.12** is available.
+
+You may use **any terminal**:
+
+* Windows: PowerShell
+* Linux: Terminal
+* macOS: Terminal
+
+Ensure Python 3 is installed, then install **uv**, which is used for environment management and execution
+*(this step is required only once)*:
 
 ```bash
-git clone https://github.com/elemeng/simple-sperm-analyzer.git
+pip install uv
+```
+
+Clone the repository and set up the environment:
+
+```bash
+# Change to your preferred software directory
+cd /home/elemeng/software
+
+# Clone the repository
+git clone https://github.com/elemeng/simple-sperm-analyzer
 cd simple-sperm-analyzer
-```
 
-Then, install dependecies:
-
-```bash
-pip install uv #(if not already installed)
+# Install dependencies
 uv sync
+
+# Activate the virtual environment
+source .venv/bin/activate   # On Windows: .venv\Scripts\activate
 ```
 
-## Usage
+✅ **The pipeline is now ready to run.**
 
-### Single File Processing
+---
+
+## 🔎 Basic Usage
 
 ```bash
-uv run src/main.py input.tif --output_dir results/ --min-area 20 --max-area 45
+# Show help message
+uv run src/main.py --help
 ```
 
-### Batch Processing
+### 📝 Notes
+
+* Parameters can be provided via **command-line flags** or a **JSON configuration file**
+* **Using a JSON file is strongly recommended** for batch processing and reproducibility
+
+### 📖 See [Detailed parameter description](docs/Parameters.md)
+
+---
+
+## 📦 Example Workflow
+
+### 1️⃣ Movie Preprocessing (ImageJ / Fiji)
+
+Ensure movies contain **white sperm heads on a black background**.
+
+Recommended preprocessing steps:
+
+* **Invert (if needed):** `Edit → Invert`
+* **Background subtraction:** `Process → Subtract Background`
+* **Contrast enhancement:**
+  `Image → Adjust → Brightness/Contrast`
+  Tune to emphasize sperm heads while suppressing background noise.
+
+![Preprocessing example](docs/images/preprocessing.jpg)
+
+---
+
+### 2️⃣ Run the Pipeline
 
 ```bash
-uv run src/main.py --input_dir data/ --output_dir results/ --pattern "*.tif" --parallel 4
+uv run src/main.py example/movies \
+  -o example/results \
+  --params-file example/zebrafish_sperm_params.json \
+  --viz-dir example/movies \
+  --cut-input-suffix "-enhanced" \
+  --input-glob "*-enhanced.avi" \
+  --viz-glob "Stream-?.avi" \
+  --recursive
 ```
 
-### With Overlay Movie for Visualization
+---
+
+### 📁 Output Directory Structure
+
+example/results/
+dmso_60min/
+└── Stream-2-enhanced/
+    ├── [pipeline.log](example/results/dmso_60min/Stream-2-enhanced/pipeline.log)
+    ├── [Stream-2-enhanced_ana_motility.csv](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_ana_motility.csv)
+    ├── [Stream-2-enhanced_ana_report.txt](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_ana_report.txt)
+    ├── [Stream-2-enhanced_det_coords.csv](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_det_coords.csv)
+    ├── [Stream-2-enhanced_det_overlay.avi](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_det_overlay.avi)
+    ├── [Stream-2-enhanced_pipeline_summary.json](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_pipeline_summary.json)
+    ├── [Stream-2-enhanced_trk_overlay.avi](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_overlay.avi)
+    ├── [Stream-2-enhanced_trk_overview.png](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_overview.png)
+    └── [Stream-2-enhanced_trk_tracks.csv](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_tracks.csv)
+
+* 🎥 Visualization example:
+  `example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_overlay.avi`
+
+* 📈 Example track visualization:
+  ![Tracks](docs/images/tracks.png)
+
+---
+
+## 📋 Command-Line Interface
 
 ```bash
-uv run src/main.py input.tif --output_dir results/ --overlay-movie original_movie.tif
+uv run src/main.py [OPTIONS] input_path
 ```
 
-### Analysis and Visualization
+## 🎯 What to Tune First (Recommended Order)
 
-```bash
-# Run motility analysis
-uv run src/analysis.py tracking.csv --pixel-size 0.5 --fps 60
+In most cases, **you do not need to tune all parameters**.
 
-# Create plots
-uv run src/plot.py
-uv run src/plot_bonferroni.py
+---
 
-# Convert movies to TIF
-uv run src/movie2tif.py input.mp4 output.tif
+### 1️⃣ Detection (Most Important)
 
-# Preprocess images
-uv run src/preprocess.py input.tif output.tif   
-```
+If detection is wrong, **everything downstream fails**.
 
-## Key Parameters
+Tune in the following order:
 
-Detection parameters (customizable via CLI):
+1. **`--det-threshold`**
+   Controls foreground/background separation.
 
-- `min_area`/`max_area`: Size filtering (default: 20-45 pixels)
-- `min_aspect`/`max_aspect`: Elongation filtering (default: 1.2-3.0)
-- `min_solidity`: Hook shape detection (default: 0.65)
-- `threshold`: Binary threshold (default: 10)
-- `blur_radius`: Gaussian blur for noise reduction (default: 0.5)
+   * Too low → noise
+   * Too high → missed sperm
 
-## Data Formats
+2. **`--det-min-area`, `--det-max-area`**
+   Match sperm head size in pixels.
 
-- **Input**: TIF image stacks (8-bit grayscale)
-- **Output**: CSV files with coordinates and detection metrics
-- **Visualization**: Marked TIF stacks and PNG summaries
-- **Tracking**: CSV with trajectory data for motility analysis
+3. **`--det-min-solidity`**
+   Removes irregular debris and merged objects.
 
-## Architecture
+4. **`--det-min-aspect`, `--det-max-aspect`**
+   Species-dependent (round vs. elongated heads).
 
-The codebase follows a modular architecture:
+🎯 **Goal:** Every visible sperm head is detected **once per frame**.
 
-- **Core Detection Pipeline** (`core.py`): Main sperm detection algorithm using contour analysis
-- **Main Entry Point** (`main.py`): CLI interface with single/batch processing support
-- **Tracking System** (`tracker.py`): Multi-object tracking using Kalman filters
-- **Analysis Modules**: Statistical analysis of motility parameters
+---
 
-## Dependencies
+### 2️⃣ Tracking Geometry (Second Priority)
 
-Core dependencies (defined in `pyproject.toml`):
+After detection is stable, tune **motion constraints**.
 
-- OpenCV (`opencv-python`) for image processing
-- NumPy, Pandas for data handling
-- Matplotlib, Seaborn for plotting
-- FilterPy for Kalman filtering
-- Tifffile for TIFF I/O
-- ImageIO for video processing
+Tune in this order:
 
-## License
+1. **`--trk-max-distance`**
+   Maximum movement allowed between frames (pixels).
 
-MIT License
+2. **`--trk-angle-hard-cut`**
+   Prevents non-biological sharp turns.
 
-Copyright (c) 2025 Simple Sperm Analyzer
+3. **`--trk-max-age`**
+   Allows short occlusions without breaking tracks.
+
+🎯 **Goal:** Tracks follow sperm smoothly without jumping.
+
+---
+
+### 3️⃣ Matching Behavior (Fine Control)
+
+These parameters refine **which detection belongs to which track**.
+
+Tune **only if you observe**:
+
+* ID switches
+* Track hopping
+* Broken trajectories
+
+Key parameters:
+
+* **`--trk-weight-direction`** *(increase first)*
+* **`--trk-weight-distance`**
+* **`--trk-sigma-angle`** *(smaller = stricter)*
+* **`--trk-sigma-distance`**
+
+⚠️ Keep weights summing to approximately **1**.
+
+---
+
+### 4️⃣ Immotile Mining (Optional)
+
+Tune only if:
+
+* You care about **immotile sperm**, or
+* Motile tracking is confused by static objects
+
+Tune in this order:
+
+1. **`--imm-search-radius`**
+   Tolerance for drift.
+
+2. **`--imm-max-std`**
+   Separates true immotile from slow movers.
+
+3. **`--imm-min-points`**
+   Prevents false immotile tracks.
+
+---
+
+### 5️⃣ CASA Analysis (Final Step)
+
+Tracking must already be correct.
+
+Critical parameters:
+
+* **`--pixel-size`** ⚠️ *(most important)*
+* **`--fps`**
+* Motility thresholds (`--ana-motility-*`)
+
+Tune based on:
+
+* Species
+* Temperature
+* Experimental protocol
+
+---
+
+🧠 **Rule of Thumb**
+
+> **Fix detection first → then tracking geometry → then matching behavior → then analysis.**
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### Low detection rate
+
+* Decrease `--det-threshold` (try `5–15`)
+* Adjust `--det-min-area` / `--det-max-area` for magnification
+* Increase `--det-blur-radius` for noisy images
+
+#### Tracking ID switches
+
+* Increase `--trk-weight-direction` (try `0.5–0.7`)
+* Decrease `--trk-sigma-angle` (try `30–40°`)
+* Use `--trk-assignment-mode hungarian` for global optimization
+
+#### Short tracks
+
+* Decrease `--trk-min-hits` (minimum `2`)
+* Increase `--trk-max-age` (try `7–10`)
+* Decrease `--trk-min-track-length`
+
+---
+
+## 📚 References
+
+1. Alquézar-Baeta, C., Gimeno-Martos, S., Miguel-Jiménez, S., Santolaria, P., Yániz, J., Palacín, I., Casao, A., Cebrián-Pérez, J.Á., Muiño-Blanco, T., and Pérez-Pé, R. (2019). OpenCASA: A new open-source and scalable tool for sperm quality analysis. Plos Comput. Biol. 15, e1006691. <https://doi.org/10.1371/journal.pcbi.1006691>.
+
+2. Yamaguchi, H., Morikawa, M., and Kikkawa, M. (2023). Calaxin stabilizes the docking of outer arm dyneins onto ciliary doublet microtubule in vertebrates. eLife 12, e84860. <https://doi.org/10.7554/eLife.84860>.
+
+3. Xin Zhang, Jiang Sun, Yonggang Lu, Jintao Zhang, Keisuke Shimada, Taichi Noda, Shuqin Zhao, Takayuki Koyano, Makoto Matsuyama, Shushu Zhou, et al. (2021). LRRC23 is a conserved component of the radial spoke that is necessary for sperm motility and male fertility in mice. Journal of Cell Science 134, jcs259381. <https://doi.org/10.1242/jcs.259381>.
+
+---
+
+## 🤝 Contributing
+
+Issues, feature requests, and pull requests are welcome.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+See the [LICENSE](LICENSE) file for details.

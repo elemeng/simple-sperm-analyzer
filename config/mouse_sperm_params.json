@@ -1,0 +1,69 @@
+{
+  "detection": {
+    "min_area": 30,
+    "max_area": 120,
+    "min_aspect": 1.4,
+    "max_aspect": 10.0,
+    "min_solidity": 0.1,
+    "threshold": 50,
+    "blur_radius": 1,
+    "visualize": true,
+    "color": "red",
+    "point_radius": 2,
+    "fps": 15
+  },
+  "tracking": {
+    "overlay": {
+      "trail_length": 10,
+      "track_width": 3,
+      "track_color": "red",
+      "point_radius": 2,
+      "point_color": "red",
+      "fps": 15,
+      "overview_frame": 0,
+      "overview_track_width": 1.0
+    },
+    "max_distance": 50.0,
+    "max_age": 5,
+    "min_hits": 3,
+    "min_track_length": 5,
+    "min_edge_frames": 3,
+    "edge_spawn_threshold": 0.3,
+    "appearance_thresh": 0.8,
+    "appearance_verify_dist": 20.0,
+    "use_kalman": false,
+    "weight_distance": 0.5,
+    "weight_direction": 0.4,
+    "weight_speed": 0.05,
+    "weight_morphology": 0.05,
+    "sigma_distance": 30.0,
+    "sigma_angle": 60.0,
+    "sigma_speed": 40.0,
+    "angle_hard_cut": 120.0,
+    "gamma_tau": 1.2,
+    "use_tau": false,
+    "assignment_mode": "greedy",
+    "history_len": 2,
+    "min_confidence": 0.3
+  },
+  "immotile_tracking": {
+    "use_immotile_mining": true,
+    "first_k_frames": 1,
+    "search_radius": 3.0,
+    "min_points": 25,
+    "max_std": 1.5,
+    "poly_order": 1,
+    "min_track_length": 20,
+    "outlier_percentile": 90.0,
+    "max_iterations": 2,
+    "spatial_tolerance": 2.0
+  },
+  "analysis": {
+    "pixel_size": 0.73,
+    "fps": 30,
+    "vap_window": 3,
+    "motility_vcl_threshold": 20.0,
+    "motility_vsl_threshold": 4.0,
+    "motility_vap_threshold": 4.0
+  }
+}
