@@ -1,4 +1,4 @@
-# 🚀 Sperm Motility Analyzer
+# 🚀 Sperm Motility Analysis
 
 **Automated detection, tracking, and quantitative analysis of sperm motility using motion-aware algorithms**
 
@@ -105,18 +105,20 @@ uv run src/main.py example/movies \
 
 ### 📁 Output Directory Structure
 
+```text
 example/results/
 dmso_60min/
 └── Stream-2-enhanced/
-    ├── [pipeline.log](example/results/dmso_60min/Stream-2-enhanced/pipeline.log)
-    ├── [Stream-2-enhanced_ana_motility.csv](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_ana_motility.csv)
-    ├── [Stream-2-enhanced_ana_report.txt](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_ana_report.txt)
-    ├── [Stream-2-enhanced_det_coords.csv](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_det_coords.csv)
-    ├── [Stream-2-enhanced_det_overlay.avi](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_det_overlay.avi)
-    ├── [Stream-2-enhanced_pipeline_summary.json](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_pipeline_summary.json)
-    ├── [Stream-2-enhanced_trk_overlay.avi](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_overlay.avi)
-    ├── [Stream-2-enhanced_trk_overview.png](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_overview.png)
-    └── [Stream-2-enhanced_trk_tracks.csv](example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_tracks.csv)
+    ├── pipeline.log
+    ├── Stream-2-enhanced_ana_motility.csv
+    ├── Stream-2-enhanced_ana_report.txt
+    ├── Stream-2-enhanced_det_coords.csv
+    ├── Stream-2-enhanced_det_overlay.avi
+    ├── Stream-2-enhanced_pipeline_summary.json
+    ├── Stream-2-enhanced_trk_overlay.avi
+    ├── Stream-2-enhanced_trk_overview.png
+    └── Stream-2-enhanced_trk_tracks.csv
+```
 
 * 🎥 Visualization example:
   `example/results/dmso_60min/Stream-2-enhanced/Stream-2-enhanced_trk_overlay.avi`
