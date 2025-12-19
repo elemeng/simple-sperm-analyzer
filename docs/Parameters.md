@@ -27,7 +27,7 @@ Parameters can be provided via:
 ## 😄 Preprocess
 
 * **Must preprocess movies to remove background noise and make it white-sperm on black-background.**
-![preprocess](docs/images/preprocessing.jpg)
+![preprocess](images/preprocessing.jpg)
 
 ---
 
