@@ -12,7 +12,7 @@ This document provides a **complete and authoritative reference** for all comman
 ## 🔧 Overview
 
 ```bash
-uv run src/main.py [OPTIONS] input_path
+uv run main.py [OPTIONS] input_path
 ```
 
 Parameters can be provided via:

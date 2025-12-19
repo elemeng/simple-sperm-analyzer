@@ -33,3 +33,38 @@
 2025-12-19 19:12:53,912 - INFO - Starting analysis...
 2025-12-19 19:12:54,343 - INFO - Analysis saved: Stream-3-enhanced_ana_motility.csv
 2025-12-19 19:12:54,344 - INFO - Processing complete: Stream-3-enhanced (25.18s)
+2025-12-19 19:17:49,684 - INFO - Processing example/movies/trici_10mM_60min/Stream-3-enhanced.avi
+2025-12-19 19:17:49,684 - INFO - Looking for visualization movie for: Stream-3-enhanced.avi in directory: example/movies (recursive: True, viz_glob: Stream-?.avi)
+2025-12-19 19:17:49,684 - INFO - Visualization movie matched in same directory as input: Stream-3-enhanced.avi -> Stream-3.avi
+2025-12-19 19:17:50,154 - INFO - Frames: 120, Img shape: (1200, 1200)
+2025-12-19 19:17:50,154 - INFO - Starting detection...
+2025-12-19 19:17:50,915 - INFO - Detection saved: Stream-3-enhanced_det_coords.csv (frames=120, dets=22172)
+2025-12-19 19:17:53,051 - INFO - Starting tracking...
+2025-12-19 19:17:53,051 - INFO - Two-stage tracking enabled: Stage 1 - Immotile mining
+2025-12-19 19:17:53,051 - INFO - Starting two-stage tracking pipeline
+2025-12-19 19:17:53,051 - INFO - Stage 1: Immotile mining with first 1 frames, radius 8.0 px
+2025-12-19 19:17:53,051 - INFO - ImmotileTracker initialized with joblib (n_jobs=22)
+2025-12-19 19:17:53,052 - INFO - Found 180 potential immotile anchors
+2025-12-19 19:17:53,052 - INFO - Processing anchors with joblib (n_jobs=22)
+2025-12-19 19:17:53,052 - INFO - Searching for nearby detections within 8.00 radius for each anchor (parallel)
+2025-12-19 19:17:53,052 - INFO - Using joblib batch_size=auto
+2025-12-19 19:18:03,252 - INFO - Parallel processing: Removed 2005 immotile detections, 20167 remaining for motile tracking
+2025-12-19 19:18:03,255 - INFO - Stage 1 complete: Found 40 immotile tracks with 2005 detections
+2025-12-19 19:18:03,255 - INFO - Stage 2: Motile tracking with 20167 remaining detections
+2025-12-19 19:18:06,223 - INFO - Stage 2 complete: Found 1748 motile tracks with 19748 detections
+2025-12-19 19:18:06,225 - INFO - Offset motile tracking IDs by 40 to avoid overlap with immotile tracks
+2025-12-19 19:18:06,226 - INFO - Two-stage pipeline complete: 1788 total tracks, 98.1% detection utilization
+2025-12-19 19:18:06,227 - INFO - Created user-friendly track IDs: 1788 tracks (IDs 1-1788) from internal tracking_id range 0-1787
+2025-12-19 19:18:06,228 - INFO - Two-stage tracking summary:
+2025-12-19 19:18:06,228 - INFO -   total_input_detections: 22172
+2025-12-19 19:18:06,228 - INFO -   immotile_tracks_found: 40
+2025-12-19 19:18:06,228 - INFO -   immotile_detections_removed: 2005
+2025-12-19 19:18:06,228 - INFO -   motile_tracks_found: 1748
+2025-12-19 19:18:06,228 - INFO -   motile_detections: 19748
+2025-12-19 19:18:06,228 - INFO -   total_tracks: 1788
+2025-12-19 19:18:06,228 - INFO -   detection_utilization: 0.9811022911780625
+2025-12-19 19:18:06,230 - INFO - Filtered tracks by min_track_length=10: 1788 -> 635 tracks
+2025-12-19 19:18:06,279 - INFO - Tracking saved: Stream-3-enhanced_trk_tracks.csv (tracks=635, rows=17107)
+2025-12-19 19:18:14,501 - INFO - Starting analysis...
+2025-12-19 19:18:14,879 - INFO - Analysis saved: Stream-3-enhanced_ana_motility.csv
+2025-12-19 19:18:14,880 - INFO - Processing complete: Stream-3-enhanced (25.20s)

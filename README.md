@@ -58,7 +58,7 @@ source .venv/bin/activate   # On Windows: .venv\Scripts\activate
 
 ```bash
 # Show help message
-uv run src/main.py --help
+uv run main.py --help
 ```
 
 ### 📝 Notes
@@ -91,7 +91,7 @@ Recommended preprocessing steps:
 ### 2️⃣ Run the Pipeline
 
 ```bash
-uv run src/main.py example/movies \
+uv run main.py example/movies \
   -o example/results \
   --params-file example/zebrafish_sperm_params.json \
   --viz-dir example/movies \
@@ -131,7 +131,7 @@ dmso_60min/
 ## 📋 Command-Line Interface
 
 ```bash
-uv run src/main.py [OPTIONS] input_path
+uv run main.py [OPTIONS] input_path
 ```
 
 ## 🎯 What to Tune First (Recommended Order)
