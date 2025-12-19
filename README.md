@@ -95,7 +95,7 @@ uv run src/main.py example/movies \
   -o example/results \
   --params-file example/zebrafish_sperm_params.json \
   --viz-dir example/movies \
-  --cut-input-suffix "-enhanced" \
+  --cut-input-suffix="-enhanced" \
   --input-glob "*-enhanced.avi" \
   --viz-glob "Stream-?.avi" \
   --recursive

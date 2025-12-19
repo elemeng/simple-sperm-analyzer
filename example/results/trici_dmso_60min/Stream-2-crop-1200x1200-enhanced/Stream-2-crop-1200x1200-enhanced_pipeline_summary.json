@@ -1,0 +1,54 @@
+{
+  "movie": "Stream-2-crop-1200x1200-enhanced",
+  "timestamp": "2025-12-19T19:13:07.757924",
+  "duration_seconds": 13.413389921188354,
+  "params": {
+    "detection": {
+      "min_area": 80,
+      "max_area": 300,
+      "min_aspect": 0.8,
+      "max_aspect": 3.0,
+      "min_solidity": 0.8,
+      "threshold": 10,
+      "blur_radius": 1,
+      "visualize": true,
+      "color": "red",
+      "point_radius": 5,
+      "fps": 23
+    },
+    "tracking": {
+      "max_age": 3,
+      "min_hits": 3,
+      "max_distance": 50.0,
+      "theta_hard": 1.5707963267948966,
+      "sigma_theta": 1.0471975511965976,
+      "gamma_tau": 1.2,
+      "w_dir": 0.4,
+      "w_dist": 0.5,
+      "w_speed": 0.05,
+      "w_morph": 0.05,
+      "use_tau": true,
+      "use_kf": false,
+      "assignment_mode": "greedy",
+      "history_len": 2,
+      "min_edge_frames": 3,
+      "edge_spawn_threshold": 0.05,
+      "img_width": 512.0,
+      "img_height": 512.0,
+      "track_history_file": null,
+      "min_track_length": 10,
+      "appearance_thresh": 0.8,
+      "appearance_verify_dist": 20.0,
+      "sigma_distance": 30.0,
+      "sigma_speed": 40.0
+    },
+    "analysis": {
+      "pixel_size": 0.17,
+      "fps": 33,
+      "vap_window": 5,
+      "motility_vcl_threshold": 20.0,
+      "motility_vsl_threshold": 4.0,
+      "motility_vap_threshold": 4.0
+    }
+  }
+}

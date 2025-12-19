@@ -1,0 +1,36 @@
+2025-12-19 19:12:54,345 - INFO - Processing example/movies/trici_dmso_60min/Stream-2-crop-1200x1200-enhanced.avi
+2025-12-19 19:12:54,345 - INFO - Looking for visualization movie for: Stream-2-crop-1200x1200-enhanced.avi in directory: example/movies (recursive: True, viz_glob: Stream-?.avi)
+2025-12-19 19:12:54,345 - WARNING - No matching visualization movie found for Stream-2-crop-1200x1200-enhanced.avi in directory example/movies
+2025-12-19 19:12:54,803 - INFO - Frames: 120, Img shape: (1200, 1200)
+2025-12-19 19:12:54,803 - INFO - Starting detection...
+2025-12-19 19:12:55,486 - INFO - Detection saved: Stream-2-crop-1200x1200-enhanced_det_coords.csv (frames=120, dets=13722)
+2025-12-19 19:12:56,901 - INFO - Starting tracking...
+2025-12-19 19:12:56,901 - INFO - Two-stage tracking enabled: Stage 1 - Immotile mining
+2025-12-19 19:12:56,902 - INFO - Starting two-stage tracking pipeline
+2025-12-19 19:12:56,902 - INFO - Stage 1: Immotile mining with first 1 frames, radius 8.0 px
+2025-12-19 19:12:56,902 - INFO - ImmotileTracker initialized with joblib (n_jobs=22)
+2025-12-19 19:12:56,902 - INFO - Found 121 potential immotile anchors
+2025-12-19 19:12:56,902 - INFO - Processing anchors with joblib (n_jobs=22)
+2025-12-19 19:12:56,902 - INFO - Searching for nearby detections within 8.00 radius for each anchor (parallel)
+2025-12-19 19:12:56,902 - INFO - Using joblib batch_size=auto
+2025-12-19 19:13:01,233 - INFO - Parallel processing: Removed 1387 immotile detections, 12335 remaining for motile tracking
+2025-12-19 19:13:01,235 - INFO - Stage 1 complete: Found 17 immotile tracks with 1387 detections
+2025-12-19 19:13:01,236 - INFO - Stage 2: Motile tracking with 12335 remaining detections
+2025-12-19 19:13:02,627 - INFO - Stage 2 complete: Found 699 motile tracks with 12092 detections
+2025-12-19 19:13:02,628 - INFO - Offset motile tracking IDs by 17 to avoid overlap with immotile tracks
+2025-12-19 19:13:02,629 - INFO - Two-stage pipeline complete: 716 total tracks, 98.2% detection utilization
+2025-12-19 19:13:02,630 - INFO - Created user-friendly track IDs: 716 tracks (IDs 1-716) from internal tracking_id range 0-715
+2025-12-19 19:13:02,630 - INFO - Two-stage tracking summary:
+2025-12-19 19:13:02,630 - INFO -   total_input_detections: 13722
+2025-12-19 19:13:02,630 - INFO -   immotile_tracks_found: 17
+2025-12-19 19:13:02,630 - INFO -   immotile_detections_removed: 1387
+2025-12-19 19:13:02,630 - INFO -   motile_tracks_found: 699
+2025-12-19 19:13:02,630 - INFO -   motile_detections: 12092
+2025-12-19 19:13:02,630 - INFO -   total_tracks: 716
+2025-12-19 19:13:02,630 - INFO -   detection_utilization: 0.9822912111937036
+2025-12-19 19:13:02,632 - INFO - Filtered tracks by min_track_length=10: 716 -> 355 tracks
+2025-12-19 19:13:02,664 - INFO - Tracking saved: Stream-2-crop-1200x1200-enhanced_trk_tracks.csv (tracks=355, rows=12221)
+2025-12-19 19:13:07,537 - INFO - Starting analysis...
+2025-12-19 19:13:07,757 - INFO - Analysis saved: Stream-2-crop-1200x1200-enhanced_ana_motility.csv
+2025-12-19 19:13:07,758 - INFO - Processing complete: Stream-2-crop-1200x1200-enhanced (13.41s)
+2025-12-19 19:13:07,758 - INFO - Pipeline completed: 2/2 files processed successfully
