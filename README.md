@@ -10,7 +10,7 @@
 
 ## 📘 Full parameter reference
 
-### Click here to see ➡️ [Detailed parameter description](docs/Parameters.md) 📖
+### Click here to see ➡️ [Detailed parameter description](docs/Parameters.md) ⬅️
 
 ---
 
